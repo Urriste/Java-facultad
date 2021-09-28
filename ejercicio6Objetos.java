@@ -20,15 +20,16 @@ public class ejercicio6Objetos {
         int dimL = 0;
         Partido[] partidos = new Partido[dimF];
         
-        String local;
-        String visitante;
-        int golesLocal;
-        int golesVisitante;
+        String local = "";
+        String visitante = "";
+        int golesLocal = 0;
+        int golesVisitante = 0;
         
         System.out.println("Ingrese el nombre del equipo visitante");
         visitante = Lector.leerString();
         
-        while((dimL != dimF) || (visitante.equals("ZZZ")) ) {
+        while((!visitante.equals("ZZZ")) && (dimL < dimF)  ) {
+            
             System.out.println("Ingrese el nombre del equipo local");
             local = Lector.leerString();
             
@@ -47,8 +48,46 @@ public class ejercicio6Objetos {
             visitante = Lector.leerString();
             
         }
-       
-    
+        
+        
+        //Ver cuantos partidos ganó River || Goles de Boca hechos de local || Porcentaje de empates
+         
+        int cantRiver = 0;
+        int golesBocaLocal = 0;
+        int cantEmpates = 0;
+        
+        for (int i = 0; i < dimL; i++) {
+      
+          if (partidos[i].getGanador().equals("River")){        
+              cantRiver++;
+          }    
+          
+          if(partidos[i].getLocal().equals("Boca")){
+              golesBocaLocal += partidos[i].getGolesLocal();
+          }
+          
+          if(partidos[i].hayEmpate()){
+              cantEmpates++;
+          }
+          
+        }
+        System.out.println();
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_");
+        
+        System.out.println("La cantidad de partidos que ganó river es: " + cantRiver);
+        
+        System.out.println();
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_");
+        
+        System.out.println("La cantidad de goles que convirtió Boca de local es: " + golesBocaLocal);
+        
+         System.out.println();
+        System.out.println("-_-_-_-_-_-_-_-_-_-_-_");
+        
+        
+        double porcentajeEmpate = cantEmpates / dimL;
+         System.out.println("El porcentaje de empates es: %" + porcentajeEmpate);
+        
     }
    
 }
